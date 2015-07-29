@@ -20,7 +20,7 @@ class Console {
 			'command' => ['Command', 'Console']
 		];
 		$params = compact('namespace', 'provides');
-		return static::_filter(__FUNCTION__, $params, function($self, $params){
+		return static::filterStaticMethod(__FUNCTION__, $params, function($self, $params){
 			extract($params);
 			App::provide($namespace, $provides);
 		});
@@ -42,7 +42,7 @@ class Console {
 	public static function input() {
 		$class = static::$classes['input'];
 		$params = compact('class');
-		return static::_filter(__FUNCTION__, $params, function($self, $params){
+		return static::filterStaticMethod(__FUNCTION__, $params, function($self, $params){
 			extract($params);
 			return new $class();
 		});
@@ -51,7 +51,7 @@ class Console {
 	public static function output() {
 		$class = static::$classes['output'];
 		$params = compact('class');
-		return static::_filter(__FUNCTION__, $params, function($self, $params){
+		return static::filterStaticMethod(__FUNCTION__, $params, function($self, $params){
 			extract($params);
 			return new $class();
 		});
